@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrafficState : MonoBehaviour
 {
-    float timer;
+    bool stoptimer;
     bool usingState;
     bool green;
     bool yellow;
@@ -14,15 +14,12 @@ public class TrafficState : MonoBehaviour
     trafficLights tl;
     void Start()
     {
-        //tl= GetComponent<trafficLights>();
-        //amountoflights = tl.amountoflights;
-        //ChooseColour(amountoflights);
+        stoptimer = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void ChooseColour(float amountoflights)
@@ -69,40 +66,48 @@ public class TrafficState : MonoBehaviour
                 if (green == true){
                     int time = Random.Range(5,11);
                     float finaltime = time;
-                    timer += Time.deltaTime;
                     var lightRend = light.GetComponent<Renderer>();
                     lightRend.material.SetColor("_Color", Color.green);
                     usingState = true;
+                    float timer = 0;
                     while(timer <= finaltime){
-                        Debug.Log(timer);
+                        Debug.Log("Time: Green: " + timer);
+                        timer += Time.deltaTime;
+                        yield return new WaitForFixedUpdate();
                     }
-                    yield return new WaitForFixedUpdate();
+                    timer = 0;
                     usingState = false;
                 }
 
                 if (yellow == true){
                     int time = 4;
                     float finaltime = time;
-                    timer += Time.deltaTime;
+                    usingState = true;
+                    var lightRend = light.GetComponent<Renderer>();
+                    lightRend.material.SetColor("_Color", Color.yellow);
+                    float timer = 0;
                     while(timer <= finaltime){
-                        usingState = true;
-                        var lightRend = light.GetComponent<Renderer>();
-                        lightRend.material.SetColor("_Color", Color.yellow);
+                        Debug.Log("Time: Yellow: " + timer);
+                        timer += Time.deltaTime;
                         yield return new WaitForFixedUpdate();
                     }
+                    timer = 0;
                     usingState = false;
                 }
 
                 if (red == true){
                     int time = Random.Range(5,11);
                     float finaltime = time;
-                    timer += Time.deltaTime; 
+                    usingState = true;
+                    var lightRend = light.GetComponent<Renderer>();
+                    lightRend.material.SetColor("_Color", Color.red);
+                    float timer = 0;
                     while(timer <= finaltime){
-                        usingState = true;
-                        var lightRend = light.GetComponent<Renderer>();
-                        lightRend.material.SetColor("_Color", Color.red);
+                        Debug.Log("Time: Yellow: " + timer);
+                        timer += Time.deltaTime;
                         yield return new WaitForFixedUpdate();
                     }             
+                    timer = 0;
                     usingState = false;
                 }
 
