@@ -70,12 +70,13 @@ public class TrafficState : MonoBehaviour
                     int time = Random.Range(5,11);
                     float finaltime = time;
                     timer += Time.deltaTime;
+                    var lightRend = light.GetComponent<Renderer>();
+                    lightRend.material.SetColor("_Color", Color.green);
+                    usingState = true;
                     while(timer <= finaltime){
-                        usingState = true;
-                        var lightRend = light.GetComponent<Renderer>();
-                        lightRend.material.SetColor("_Color", Color.green);
-                        yield return new WaitForFixedUpdate();
+                        Debug.Log(timer);
                     }
+                    yield return new WaitForFixedUpdate();
                     usingState = false;
                 }
 
