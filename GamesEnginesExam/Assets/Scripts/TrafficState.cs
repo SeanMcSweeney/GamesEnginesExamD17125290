@@ -71,7 +71,6 @@ public class TrafficState : MonoBehaviour
                     usingState = true;
                     float timer = 0;
                     while(timer <= finaltime){
-                        Debug.Log("Time: Green: " + timer);
                         timer += Time.deltaTime;
                         yield return new WaitForFixedUpdate();
                     }
@@ -87,7 +86,6 @@ public class TrafficState : MonoBehaviour
                     lightRend.material.SetColor("_Color", Color.yellow);
                     float timer = 0;
                     while(timer <= finaltime){
-                        Debug.Log("Time: Yellow: " + timer);
                         timer += Time.deltaTime;
                         yield return new WaitForFixedUpdate();
                     }
@@ -103,7 +101,6 @@ public class TrafficState : MonoBehaviour
                     lightRend.material.SetColor("_Color", Color.red);
                     float timer = 0;
                     while(timer <= finaltime){
-                        Debug.Log("Time: Yellow: " + timer);
                         timer += Time.deltaTime;
                         yield return new WaitForFixedUpdate();
                     }             

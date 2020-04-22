@@ -12,17 +12,6 @@ public class trafficLights : MonoBehaviour
         CreateInCircle();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void StateManager(){
-        
-    }
-
-
     public void CreateInCircle(){
         float circleSize = 8f;
         amountoflights = 10f;
