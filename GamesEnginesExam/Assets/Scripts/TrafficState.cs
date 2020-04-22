@@ -28,7 +28,6 @@ public class TrafficState : MonoBehaviour
     public void ChooseColour(float amountoflights)
     {
         for (float i = 0; i < amountoflights; i++){
-        Debug.Log("Started " + i);
         GameObject light = GameObject.Find("Traffic Light " + (i + 1));
         StartCoroutine(ChangeColour(light));
         }
@@ -37,12 +36,11 @@ public class TrafficState : MonoBehaviour
 
     private IEnumerator ChangeColour(GameObject light)
     {
-        Debug.Log("Started ChangeColour");
         usingState = false;
         while (true)
         {
             if (usingState == false){
-                int colour = Random.Range(1,3);
+                int colour = Random.Range(1,4);
                 
                 // 1 = green, 2 = yellow, 3 = red.
 
@@ -69,7 +67,7 @@ public class TrafficState : MonoBehaviour
                 // set colours and times
 
                 if (green == true){
-                    int time = Random.Range(5,10);
+                    int time = Random.Range(5,11);
                     float finaltime = time;
                     timer += Time.deltaTime;
                     while(timer <= finaltime){
@@ -95,13 +93,13 @@ public class TrafficState : MonoBehaviour
                 }
 
                 if (red == true){
-                    int time = Random.Range(5,10);
+                    int time = Random.Range(5,11);
                     float finaltime = time;
                     timer += Time.deltaTime; 
                     while(timer <= finaltime){
                         usingState = true;
                         var lightRend = light.GetComponent<Renderer>();
-                        lightRend.material.SetColor("_Color", Color.green);
+                        lightRend.material.SetColor("_Color", Color.red);
                         yield return new WaitForFixedUpdate();
                     }             
                     usingState = false;
