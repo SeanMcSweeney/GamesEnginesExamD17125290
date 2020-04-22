@@ -37,29 +37,7 @@ public class TrafficState : MonoBehaviour
         while (true)
         {
             if (usingState == false){
-                int colour = Random.Range(1,4);
-                
-                // 1 = green, 2 = yellow, 3 = red.
-
-                if (colour == 1){
                     green = true;
-                    yellow = false;
-                    red = false;
-                }
-                else if (colour == 2){
-                    green = false;
-                    yellow = true;
-                    red = false;
-                }
-                else if (colour == 3){
-                    green = false;
-                    yellow = false;
-                    red = true;
-                }
-                else{
-                    Debug.Log("error colour not chosen");
-                    yield return null;
-                }
 
                 // set colours and times
 
@@ -74,6 +52,7 @@ public class TrafficState : MonoBehaviour
                         timer += Time.deltaTime;
                         yield return new WaitForFixedUpdate();
                     }
+                    yellow = true;
                     timer = 0;
                     usingState = false;
                 }
@@ -89,6 +68,7 @@ public class TrafficState : MonoBehaviour
                         timer += Time.deltaTime;
                         yield return new WaitForFixedUpdate();
                     }
+                    red = true;
                     timer = 0;
                     usingState = false;
                 }
@@ -104,6 +84,7 @@ public class TrafficState : MonoBehaviour
                         timer += Time.deltaTime;
                         yield return new WaitForFixedUpdate();
                     }             
+                    green = true;
                     timer = 0;
                     usingState = false;
                 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CarCreate : MonoBehaviour
 {
+    public CarState carstate;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,8 @@ public class CarCreate : MonoBehaviour
         carRend.material.color = new Color32( 102, 0, 102, 200 );
         car.name = "Car";
         car.AddComponent<CarMovement>();
+        carstate = GetComponent<CarState>();
+        carstate.carmove = GameObject.Find("Car").GetComponent<CarMovement>();
     }
     
 }
